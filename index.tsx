@@ -5,6 +5,7 @@
  */
 
 import { Devs } from "@utils/constants";
+import { copyWithToast } from "@utils/misc";
 import definePlugin from "@utils/types";
 import { Icons, Menu } from "@webpack/common";
 
@@ -21,6 +22,9 @@ export default definePlugin({
                 id="vc-copyFolderId"
                 label="Copy Folder ID"
                 icon={Icons.IdIcon}
+                action={() => {
+                    copyWithToast(`${folderId}`);
+                }}
             />));
         }
     }
