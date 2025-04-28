@@ -7,7 +7,9 @@
 import { Devs } from "@utils/constants";
 import { copyWithToast } from "@utils/misc";
 import definePlugin from "@utils/types";
-import { Icons, Menu } from "@webpack/common";
+import { findComponentByCode } from "@webpack";
+import { Menu } from "@webpack/common";
+
 
 export default definePlugin({
     name: "CopyFolderId",
@@ -15,13 +17,15 @@ export default definePlugin({
     authors: [Devs.sadan],
 
     contextMenus: {
-        "guild-context"(arr, { folderId }: { folderId?: number }) {
-            if(!folderId) return;
+        "guild-context"(arr, { folderId }: { folderId?: number; }) {
+            if (!folderId) return;
+
+            const IdIcon = findComponentByCode("15h2.04V7.34H6V17Zm4");
 
             arr.push((<Menu.MenuItem
                 id="vc-copyFolderId"
                 label="Copy Folder ID"
-                icon={Icons.IdIcon}
+                icon={IdIcon}
                 action={() => {
                     copyWithToast(`${folderId}`);
                 }}
